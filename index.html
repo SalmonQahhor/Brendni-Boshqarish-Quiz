@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brendni Boshqarish / Quiz — 160 ta test</title>
+<meta name="description" content="Brendni boshqarish fani yakuniy nazorat — quiz: 160 ta test, bloklar, tasodifiy imtihon va statistika.">
+<meta name="theme-color" content="#10b981">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2310b981'/%3E%3Ctext x='32' y='43' font-size='32' text-anchor='middle' fill='white' font-family='monospace' font-weight='700'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="blobs"><i></i><i></i><i></i></div>
+
+<!-- INTRO -->
+<div id="intro" role="dialog" aria-label="Kirish animatsiyasi">
+  <div class="term">
+    <div class="term-bar"><i></i><i></i><i></i><span>salmon@brend-quiz: ~</span></div>
+    <div id="termBody"></div>
+    <div class="pbar"><b id="pb"></b></div>
+  </div>
+  <button id="skip" type="button">o'tkazib yuborish ›</button>
+  <div class="wm">Made By SALMON</div>
+</div>
+
+<div class="wrap">
+  <header class="top">
+    <div class="logo" id="logo"><span class="m">B/</span>Brend Quiz</div>
+    <nav>
+      <button data-go="home" class="on">Testlar</button>
+      <button data-go="stats">Statistika</button>
+    </nav>
+  </header>
+
+  <!-- HOME -->
+  <section class="view on" id="v-home">
+    <div class="hero">
+      <h1>Brendni boshqarish.<br><em>Yakuniy nazorat testi.</em></h1>
+      <p class="sub">160 ta savol, 4 ta variant. Rejimni tanlang va bilimingizni sinab ko'ring — natijalar va xatolar tahlili avtomatik saqlanadi.</p>
+      <div class="chips" id="homeChips"></div>
+    </div>
+
+    <div class="grid g3">
+      <button class="card mode feat" data-mode="all">
+        <span class="tag">160 ta</span><div class="ic">🚀</div>
+        <h3>Hammasini ishlash</h3>
+        <p>Barcha 160 ta test ketma-ket, tartib bilan. Har javobdan so'ng natija ko'rsatiladi.</p>
+      </button>
+      <button class="card mode" data-mode="exam">
+        <span class="tag">25 ta · 25 daq</span><div class="ic">🎯</div>
+        <h3>Imtihon rejimi</h3>
+        <p>Bazadan 25 ta tasodifiy savol. Vaqt hisoblanadi, natija oxirida chiqadi.</p>
+      </button>
+      <button class="card mode" data-mode="mistakes" id="mistakeMode">
+        <span class="tag" id="mistakeTag">0 ta</span><div class="ic">🔁</div>
+        <h3>Xatolar ustida ishlash</h3>
+        <p>Oxirgi marta noto'g'ri javob bergan savollaringizni qayta ishlang.</p>
+      </button>
+    </div>
+
+    <div class="sec">
+      <h2>Bloklar bo'yicha (30 tadan)</h2>
+      <div class="blocks" id="blocks"></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="view" id="v-quiz">
+    <div class="qtop">
+      <button class="btn sec" id="qExit">✕ Chiqish</button>
+      <div class="qmeta"><b id="qTitle"></b><small id="qCount"></small></div>
+      <span class="pill ok" id="qOk">✓ 0</span>
+      <span class="pill no" id="qNo">✗ 0</span>
+      <span class="pill t" id="qTime">00:00</span>
+      <button class="btn sec" id="qFinish">Yakunlash</button>
+    </div>
+    <div class="prog"><i id="qProg"></i></div>
+    <div class="card qcard">
+      <div class="qnum" id="qNum"></div>
+      <div class="qtext" id="qText"></div>
+      <div class="opts" id="qOpts"></div>
+      <div class="qfoot">
+        <button class="btn sec" id="qPrev">← Oldingi</button>
+        <span class="hint">1–4 / A–D tanlash · Enter / → keyingi</span>
+        <button class="btn pri" id="qNext">Keyingi →</button>
+      </div>
+    </div>
+    <div class="card nav" id="qNav" hidden></div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="view" id="v-result"></section>
+
+  <!-- STATS -->
+  <section class="view" id="v-stats"></section>
+</div>
+
+<footer>Made By <b>SALMON</b></footer>
+
+<div class="modal" id="modal"><div class="box">
+  <h3 id="mT"></h3><p id="mP"></p>
+  <div class="row"><button class="btn pri" id="mYes">Ha</button><button class="btn sec" id="mNo">Bekor qilish</button></div>
+</div></div>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
