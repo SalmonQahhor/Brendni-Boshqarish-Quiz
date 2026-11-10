@@ -4,7 +4,7 @@ const Q = window.QUESTIONS;
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const BLOCK = 30, EXAM_N = 25, EXAM_SEC = EXAM_N * 60, KEY = 'salmon_brend_quiz_v1';
+const BLOCK = 30, EXAM_N = 25, EXAM_SEC = EXAM_N * 60, KEY = 'brend_quiz_answers_-_-';
 const LET = ['A', 'B', 'C', 'D'];
 
 /* ---------- storage ---------- */
@@ -333,28 +333,28 @@ $('#skip').onclick = closeIntro; intro.addEventListener('dblclick', closeIntro);
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const SCRIPT = [
   { cmd: 'whoami', out: ['<span class="c">guest</span>'] },
-  { cmd: 'sudo access --request brend-quiz', out: ['[sudo] password for guest: <span class="c">••••••••</span>', '<span class="w">⚠ ruxsat so\'ralmoqda...</span>'], wait: 500 },
+  { cmd: 'sudo access --request brend-quiz', out: ['[sudo] password for guest: <span class="c">••••••••</span>', '<span class="w">⚠ ruxsat so\'ralmoqda...</span>'], wait: 150 },
   { cmd: 'load questions.db', out: ['<span class="d">→ parsing Brending_160_ta_test_javoblari.docx</span>', `<span class="ok">[ OK ]</span> ${Q.length} ta savol yuklandi`, '<span class="ok">[ OK ]</span> to\'g\'ri javoblar (*) aniqlandi'] },
   { cmd: 'init modes --blocks=30 --exam=25 --stats', out: [`<span class="ok">[ OK ]</span> ${nBlocks} ta blok  ·  barchasi (${Q.length})  ·  imtihon (${EXAM_N})`, '<span class="ok">[ OK ]</span> statistika va xatolar tahlili tayyor'] },
-  { cmd: 'ping salmon --permission', out: ['<span class="d">64 bytes from salmon: time=0.8ms</span>', '<span class="d">verifying signature ........</span>'], wait: 600 },
+  { cmd: 'ping salmon --permission', out: ['<span class="d">64 bytes from salmon: time=0.8ms</span>', '<span class="d">verifying signature ........</span>'], wait: 200 },
 ];
 async function typeLine(cmd) {
   const row = document.createElement('div');
   row.innerHTML = '<span class="p">salmon@quiz</span><span class="d">:~$</span> <span class="c"></span><span class="cur"></span>';
   body.appendChild(row);
   const t = row.querySelector('.c');
-  for (const ch of cmd) { if (skipped) return; t.textContent += ch; await sleep(22 + Math.random() * 38); }
+  for (const ch of cmd) { if (skipped) return; t.textContent += ch; await sleep(4 + Math.random() * 8); }
   row.querySelector('.cur').remove();
 }
 async function runIntro() {
   try { if (sessionStorage.getItem('salmon_intro')) { intro.remove(); return; } } catch (e) {}
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { intro.remove(); return; }
-  await sleep(350);
+  await sleep(120);
   for (let i = 0; i < SCRIPT.length; i++) {
     const s = SCRIPT[i];
     await typeLine(s.cmd); if (skipped) return;
-    await sleep(180);
-    for (const o of s.out) { if (skipped) return; const d = document.createElement('div'); d.innerHTML = o; body.appendChild(d); body.scrollTop = body.scrollHeight; await sleep(230); }
+    await sleep(60);
+    for (const o of s.out) { if (skipped) return; const d = document.createElement('div'); d.innerHTML = o; body.appendChild(d); body.scrollTop = body.scrollHeight; await sleep(70); }
     if (s.wait) await sleep(s.wait);
     pb.style.width = ((i + 1) / SCRIPT.length * 100) + '%';
     body.scrollTop = body.scrollHeight;
@@ -363,7 +363,7 @@ async function runIntro() {
   const d = document.createElement('div');
   d.innerHTML = '<span class="big">✔ SALMON TOMONIDAN RUXSAT BERILDI</span><span class="ok" style="display:block;margin-top:6px">ACCESS GRANTED — xush kelibsiz!</span>';
   body.appendChild(d); body.scrollTop = body.scrollHeight;
-  await sleep(1700);
+  await sleep(650);
   if (!skipped) closeIntro();
 }
 
